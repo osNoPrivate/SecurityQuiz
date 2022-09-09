@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.mapper.UserMapper">
+	<resultMap id="UserMapperResult" type="com.example.demo.entity.User">
+		<result column="id" property="id" />
+		<result column="account" property="account" />
+		<result column="name" property="name" />
+		<result column="password" property="password" />
+		<result column="summary" property="summary" />
+		<result column="created_date" property="createdDate" />
+		<result column="updated_date" property="updatedDate" />
+	</resultMap>
+<insert id="insertUser">
+	insert into users (account,name,password,summary) values
+	(#{account},#{name},#{password},#{summary})
+</insert>
+<select id="checkUser" resultMap="UserMapperResult">
+	select * FROM users
+	WHERE account = #{account} and password = #{password}
+</select>
+<select id="selectUser" resultMap="UserMapperResult">
+	select * FROM users where id = #{id}
+</select>
+<select id="allUser" resultMap="UserMapperResult">
+	select * FROM users
+</select>
+<delete id="deleteUser">
+	delete from users where id = #{id}
+</delete>
+<update id="updateUser">
+	update users set
+	account = #{account},name = #{name},password = #{password},summary = #{summary}
+	where id = #{id}
+</update>
+</mapper>

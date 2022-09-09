@@ -1,0 +1,207 @@
+.main-content{
+	clear:both;
+	margin:0 5% 0 5%;
+}
+
+/*ヘッダー画面*/
+.headerName{
+	font-size: 35px;
+	font-weight:bold;
+}
+.logout-button{
+	margin:7px 0 0 0;
+	float:right;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #ff8080;
+	border-radius: 5px;
+}
+.headerSummary-button{
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	color:#c0c0c0;
+	background-color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight:bold;
+}
+.userEdit-button{
+	float:right;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #c0c0c0;
+	border-radius: 5px;
+}
+.userName{
+	display:flex;
+}
+
+.home-button{
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	color:#c0c0c0;
+	background-color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight:bold;
+}
+.headerHome-button{
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	color:#c0c0c0;
+	background-color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight:bold;
+}
+.headerSummaryAddUser-button{
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	color:#c0c0c0;
+	background-color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight:bold;
+}
+/*ログイン画面*/
+#login-button{
+	color:white;
+	width: 200px;
+	font-size: 18px;
+	font-weight:bold;
+	margin:20px;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 7px 12px;
+	border-radius: 5px;
+	background-color: #a1a1a1;
+}
+
+.login-form{
+	margin:200px auto 0 auto;
+	font-size: 18px;
+	font-weight:bold;
+	align-items: center;
+	
+}
+
+/*ホーム画面*/
+#start-button{
+	width: 200px;
+	font-size: 18px;
+	font-weight:bold;
+	margin:20px;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 7px 12px;
+	border-radius: 5px;
+	background-color: #0080ff;
+	color:white;
+}
+
+.home-table{
+	margin:20px;
+}
+
+/*問題画面*/
+.stopQuestion-button{
+	margin:7px 0 0 0;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #ff8080;
+	border-radius: 5px;
+}
+.endQuestion-button{
+	margin:7px 0 0 0;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #ff972f;
+	border-radius: 5px;
+}
+
+.answer-button{
+	margin:7px 0 0 0;
+	padding: 7px 12px;
+	color:white;
+	width: 200px;
+	font-size: 18px;
+	font-weight:bold;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #ff972f;
+	border-radius: 5px;
+}
+.pagenation {
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	border: none;
+	font-size: 18px;
+	background-color: #ffffff;
+	cursor: pointer;
+}
+.question-number{
+	margin-top:10px;
+	font-size: 20px;
+	font-weight:bold;
+}
+.question-era{
+	max-width:800px;
+	margin:0 15% 0 15%;
+}
+
+/*解答画面*/
+.result-score{
+	font-size: 20px;
+	font-weight:bold;
+}
+.result-area{
+	margin:1% 10% 5% 10%;
+	width:80%;
+}
+/*サマリー画面*/
+.summary-table{
+	width:80%;
+	margin:30px 0 0 0;
+}
+.summaryEdit-button{
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #c0c0c0;
+	border-radius: 5px;
+}
+
+.summaryDelete-button{
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background-color: #ff8080;
+	border-radius: 5px;
+}
+/*サマリーユーザー登録画面*/
+.addUser-form{
+	margin:200px auto 0 auto;
+	font-size: 18px;
+	font-weight:bold;
+	align-items: center;
+}
+.summaryAddUser-button{
+	color:white;
+	width: 200px;
+	font-size: 18px;
+	font-weight:bold;
+	margin:20px;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 7px 12px;
+	border-radius: 5px;
+	background-color: #ff972f;
+}
+/*サマリーユーザー編集画面*/
+input.summaryEditUser-button{
+	color:white;
+	width: 200px;
+	font-size: 18px;
+	font-weight:bold;
+	margin:20px;
+	cursor: pointer;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 7px 12px;
+	border-radius: 5px;
+	background-color: #c0c0c0;
+}

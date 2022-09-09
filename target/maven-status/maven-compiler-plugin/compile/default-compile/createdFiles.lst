@@ -1,0 +1,6 @@
+com\example\demo\service\UserService.class
+com\example\demo\form\UserForm.class
+com\example\demo\entity\User.class
+com\example\demo\repository\mapper\UserMapper.class
+com\example\demo\controller\LoginController.class
+com\example\demo\repository\UserRepository.class

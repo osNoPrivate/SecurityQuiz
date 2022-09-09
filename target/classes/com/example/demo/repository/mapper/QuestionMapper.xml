@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.repository.mapper.QuestionMapper">
+	<resultMap id="QuestionMapperResult" type="com.example.demo.entity.Question">
+		<result column="id" property="id" />
+		<result column="first_answer" property="firstAnswer" />
+		<result column="second_answer" property="secondAnswer" />
+		<result column="third_answer" property="thirdAnswer" />
+		<result column="fourth_answer" property="fourthAnswer" />
+		<result column="answer_text" property="answerText" />
+		<result column="answer" property="answer" />
+		<result column="explanation" property="explanation" />
+		<result column="answer_result" property="answerResult" />
+		<result column="judge" property="judge" />
+	</resultMap>
+<select id="allQuestion" resultMap="QuestionMapperResult">
+	select * FROM question
+</select>
+<select id="selectQuestion" resultMap="QuestionMapperResult">
+	select * FROM question WHERE id = #{id}
+</select>
+<update id="addAnswer">
+	update question set
+	judge = #{judge},answer_result = #{answerResult}
+	where id = #{id}
+</update>
+<select id="countAnswer" resultMap="QuestionMapperResult">
+	select * FROM question where judge = 1
+</select>
+</mapper>
