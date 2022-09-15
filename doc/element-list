@@ -1,0 +1,10 @@
+com.example.demo.controller
+com.example.demo.entity
+com.example.demo.filter
+com.example.demo.form
+com.example.demo.form.annotation
+com.example.demo.form.annotation.Imple
+com.example.demo.repository
+com.example.demo.repository.mapper
+com.example.demo.selectModel
+com.example.demo.service

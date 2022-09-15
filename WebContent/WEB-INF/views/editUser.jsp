@@ -55,6 +55,7 @@
 	 			</c:forEach>
 	 		</div>
 	 	</c:if>
+	 	<font color="red"><c:out value="${errorMessage}" /></font>
 	 	
 	 	<form:form action="${pageContext.request.contextPath}/editUser/update/"
 					modelAttribute="editUserForm">
@@ -81,7 +82,7 @@
 					<td><form:input type="password" path="checkPassword" placeholder="パスワード確認"/></td>
 				</tr>
 				<tr>
-					<td>summary</td>
+					<td>authority</td>
 					<td>
 						<c:if test="${ loginUser.summary==1 }">人事<input type="hidden" name="summary" value="1"></c:if>
 						<c:if test="${ loginUser.summary==2 }">インターン生<input type="hidden" name="summary" value="2"></c:if>

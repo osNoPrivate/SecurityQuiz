@@ -2,27 +2,38 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.example.demo.entity.Score;
-import com.example.demo.repository.mapper.ScoreMapper;
 
-@Repository
-public class ScoreRepository {
 
-	@Autowired
-	private ScoreMapper scoreMapper;
+/**
+ * 
+ * スコア情報取得リポジトリ
+ * 
+ * @author sy199
+ *
+ */
+public interface ScoreRepository {
+
+	/**
+	 * スコア情報登録処理
+	 * 
+	 * @param score スコアモデル
+	 */
+	void insertScore(Score score);
 	
-	public void insertScore(Score score) {
-		scoreMapper.insertScore(score);
-	}
+	/**
+	 * 全スコア情報リスト取得
+	 * 
+	 * @return 全スコア情報
+	 */
+	List<Score> allScore();
 	
-	public List<Score> userScore(Score score){
-		return scoreMapper.userScore(score);
-	}
+	/**
+	 * 全ユーザースコア情報取得
+	 * 
+	 * @param score スコアモデル
+	 * @return 全ユーザースコア情報
+	 */
+	List<Score> userScore(Score score);
 	
-	public List<Score> allScore(){
-		return scoreMapper.allScore();
-	}
 }

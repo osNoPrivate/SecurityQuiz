@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,9 @@ public class QuestionController {
 	
 	@Autowired
 	public HttpSession session;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping(value = "/question/", method = RequestMethod.GET)
 	public String login(Model model) {
@@ -29,10 +34,9 @@ public class QuestionController {
 		User loginUser = (User)session.getAttribute("loginUser");
 		
 		if(loginUser == null) {
-			String errorMessage = "不正なアクセスです";
 			User user = new User();
 			model.addAttribute("user",user);
-			model.addAttribute("errorMessage", errorMessage);
+			model.addAttribute("errorMessage",messageSource.getMessage("loginCheck.Message", new String[]{}, Locale.JAPAN));
 			return "login";
 		}
 		
@@ -68,6 +72,7 @@ public class QuestionController {
 		if(question.getAnswerResult() == question.getAnswer()) {
 			judge= 1;
 		}
+		
 		question.setJudge(judge);
 		questionService.addAnswer(question);
 		
@@ -125,7 +130,7 @@ public class QuestionController {
 			model.addAttribute("nowQuestion",nowQuestion);
 			return "question";
 		}
-		id = id + -1;
+		id = id - 1;
 		Question nowQuestion =questionService.selectQuestion(id);
 		List<Question> allQuestionData = questionService.allQuestion();
 

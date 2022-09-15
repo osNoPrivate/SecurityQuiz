@@ -2,7 +2,10 @@ package com.example.demo.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
+
+import com.example.demo.form.annotation.PatternCheckAnnotation;
 
 public class EditUserForm {
 	private Integer id;
@@ -10,11 +13,21 @@ public class EditUserForm {
 	private String account;
 	@NotBlank
 	private String name;
+	@PatternCheckAnnotation
 	private String password;
+	@PatternCheckAnnotation
 	private String checkPassword;
 	private Integer summary;
 	private Date createdDate;
 	private Date updatedDate;
+	
+	@AssertTrue
+	public boolean ismatchPassword() {
+		if (password.matches(checkPassword)) {
+			return true;
+		}
+		return false;
+	}
 	
 	public Integer getId() {
 		return id;

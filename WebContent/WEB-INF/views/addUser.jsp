@@ -18,6 +18,7 @@
  			</c:forEach>
  		</div>
  	</c:if> 
+ 	<font color="red"><c:out value="${errorMessage}" /></font>
 
 	<form:form action="${pageContext.request.contextPath}/addUser/insert/"
 				modelAttribute="userForm">
@@ -44,7 +45,7 @@
 				<td><form:input type="password" path="checkPassword" placeholder="パスワード確認"/></td>
 			</tr>
 			<tr>
-				<td>summary</td>
+				<td>authority</td>
 				<td>インターン生</td>
 			</tr>
 		</table>

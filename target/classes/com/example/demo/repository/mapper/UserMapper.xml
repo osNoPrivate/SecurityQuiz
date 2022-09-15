@@ -13,25 +13,60 @@
 		<result column="updated_date" property="updatedDate" />
 	</resultMap>
 <insert id="insertUser">
-	insert into users (account,name,password,summary) values
-	(#{account},#{name},#{password},#{summary})
+	insert 
+	into 
+	 users (
+	 account,
+	 name,
+	 password,
+	 summary
+	) values (
+	 #{account},
+	 #{name},
+	 #{password},
+	 #{summary} 
+	)
 </insert>
 <select id="checkUser" resultMap="UserMapperResult">
-	select * FROM users
-	WHERE account = #{account} and password = #{password}
+	select 
+	 * 
+	FROM 
+	 users
+	WHERE 
+	 account = #{account} 
+	and 
+	 password = #{password}
 </select>
 <select id="selectUser" resultMap="UserMapperResult">
-	select * FROM users where id = #{id}
+	select 
+	 * 
+	FROM 
+	 users 
+	where 
+	 id = #{id}
 </select>
 <select id="allUser" resultMap="UserMapperResult">
-	select * FROM users
+	select
+	 * 
+	FROM
+	 users
 </select>
 <delete id="deleteUser">
-	delete from users where id = #{id}
+	delete 
+	from 
+	 users 
+	where 
+	 id = #{id}
 </delete>
 <update id="updateUser">
-	update users set
-	account = #{account},name = #{name},password = #{password},summary = #{summary}
-	where id = #{id}
+	update 
+	 users 
+	set
+	 account = #{account},
+	 name = #{name},
+	 password = #{password},
+	 summary = #{summary}
+	where 
+	 id = #{id}
 </update>
 </mapper>

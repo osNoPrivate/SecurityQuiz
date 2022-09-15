@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,28 +46,6 @@ public class UserService {
 		userRepository.deleteUser(user);
 	}
 	
-	public void updateUser(EditUserForm editUserForm) {
-		
-		User user = new User();
-		user.setId(editUserForm.getId());
-		user.setAccount(editUserForm.getAccount());
-		user.setName(editUserForm.getName());
-		user.setPassword(editUserForm.getPassword());
-		user.setSummary(editUserForm.getSummary());
-		userRepository.updateUser(user);
-	}
-	
-	public void updateEncUser(EditUserForm editUserForm) {
-		
-		User user = new User();
-		user.setId(editUserForm.getId());
-		user.setAccount(editUserForm.getAccount());
-		user.setName(editUserForm.getName());
-		user.setPassword(encrypt(editUserForm.getPassword()));
-		user.setSummary(editUserForm.getSummary());
-
-		userRepository.updateUser(user);
-	}
 	public void SummaryUpdateUser(SummaryEditUserForm summaryEditUserForm) {
 		
 		User user = new User();
@@ -75,6 +54,23 @@ public class UserService {
 		user.setName(summaryEditUserForm.getName());
 		user.setPassword(summaryEditUserForm.getPassword());
 		user.setSummary(summaryEditUserForm.getSummary());
+		
+		userRepository.updateUser(user);
+	}
+	
+	public void allApdateUser(EditUserForm editUserForm) {
+		User user = new User();
+		user.setId(editUserForm.getId());
+		user.setAccount(editUserForm.getAccount());
+		user.setName(editUserForm.getName());
+		user.setSummary(editUserForm.getSummary());
+		
+		if(!StringUtils.isBlank(editUserForm.getPassword())) {
+			user.setPassword(encrypt(editUserForm.getPassword()));
+		}else {
+			User userData = selectUser(user);
+			user.setPassword(userData.getPassword());
+		}
 		
 		userRepository.updateUser(user);
 	}

@@ -1,11 +1,12 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,9 @@ public class ResultController {
 	@Autowired
 	private ScoreService scoreService;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@RequestMapping(value = "/result/", method = RequestMethod.POST)
 	public String result(Model model) {
 		
@@ -36,16 +40,15 @@ public class ResultController {
 		List<Question> allQuestion = questionService.allQuestion();
 		
 //		未回答の項目がある際の処理
-		for(int i = 0; i < allQuestion.size(); i++) {
-			Question questionData = allQuestion.get(i);
+		
+		for(Question questionData : allQuestion) {
 			if(questionData.getAnswerResult() == null) {
 				Question nowQuestion = questionService.selectQuestion(questionData.getId());
 				Question question = new Question();
-				List<String> errorList = new ArrayList<String>();
-				errorList.add("未解答の項目があります。");
-				
+				List<Question> allQuestionData = questionService.allQuestion();
+				model.addAttribute("allQuestionData",allQuestionData);
 				model.addAttribute("loginUser",loginUser);
-				model.addAttribute("validationError",errorList);
+				model.addAttribute("errorMessage",messageSource.getMessage("unanswered,Message", new String[]{}, Locale.JAPAN));
 				model.addAttribute("question",question);
 				model.addAttribute("nowQuestion",nowQuestion);
 				return "question";
@@ -62,16 +65,7 @@ public class ResultController {
 		
 		model.addAttribute("loginUser",loginUser);
 		model.addAttribute("score",score);
-		model.addAttribute("question1",allQuestion.get(0));
-		model.addAttribute("question2",allQuestion.get(1));
-		model.addAttribute("question3",allQuestion.get(2));
-		model.addAttribute("question4",allQuestion.get(3));
-		model.addAttribute("question5",allQuestion.get(4));
-		model.addAttribute("question6",allQuestion.get(5));
-		model.addAttribute("question7",allQuestion.get(6));
-		model.addAttribute("question8",allQuestion.get(7));
-		model.addAttribute("question9",allQuestion.get(8));
-		model.addAttribute("question10",allQuestion.get(9));
+		model.addAttribute("allQuestion",allQuestion);
 		return "result";
 	}
 

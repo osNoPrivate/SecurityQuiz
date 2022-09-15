@@ -16,17 +16,33 @@
 		<result column="judge" property="judge" />
 	</resultMap>
 <select id="allQuestion" resultMap="QuestionMapperResult">
-	select * FROM question
+	select
+	 *  
+	FROM
+	 question
 </select>
 <select id="selectQuestion" resultMap="QuestionMapperResult">
-	select * FROM question WHERE id = #{id}
+	select
+	 * 
+	FROM
+	 question 
+	WHERE id = #{id}
 </select>
 <update id="addAnswer">
-	update question set
-	judge = #{judge},answer_result = #{answerResult}
-	where id = #{id}
+	update 
+	 question 
+	set
+	 judge = #{judge},
+	 answer_result = #{answerResult}
+	where
+	 id = #{id}
 </update>
 <select id="countAnswer" resultMap="QuestionMapperResult">
-	select * FROM question where judge = 1
+	select
+	 * 
+	FROM 
+	 question 
+	where
+	 judge = 1
 </select>
 </mapper>

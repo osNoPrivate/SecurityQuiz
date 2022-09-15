@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 public class SummaryEditUserForm {
 
 	private Integer id;
-	@NotBlank
 	private String account;
 	@NotBlank
 	private String name;

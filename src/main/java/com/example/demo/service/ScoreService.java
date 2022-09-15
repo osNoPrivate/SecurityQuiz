@@ -22,7 +22,7 @@ public class ScoreService {
 		return scoreRepository.userScore(score);
 	}
 	
-	public List<Score> allScore (){
+	public List<Score> allScore(){
 		return scoreRepository.allScore();
 	}
 

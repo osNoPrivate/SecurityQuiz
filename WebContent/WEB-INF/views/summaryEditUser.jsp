@@ -70,7 +70,7 @@
 				</tr>
 				<tr>
 					<td>account</td>
-					<td><form:input path="account" placeholder="アカウント名" value="${ summaryEditUserForm.account }"/></td>
+					<td>変更できません</td>
 				</tr>
 				<tr>
 					<td>password</td>
@@ -81,11 +81,27 @@
 					<td>変更できません</td>
 				</tr>
 				<tr>
-					<td>summary</td>
-					<td><form:select path="summary" items="${selectName}" itemLabel="name" itemValue="status" ></form:select></td>
+					<td>authority</td>
+					<c:if test="${ summaryEditUserForm.summary == 1 }">
+						<td><form:select path="summary">
+							<option value="0">選択</option>
+							<option value="1" selected>人事</option>
+							<option value="2">インターン生</option>
+							</form:select>
+						</td>
+					</c:if>
+					<c:if test="${ summaryEditUserForm.summary == 2 }">
+						<td><form:select path="summary">
+							<option value="0">選択</option>
+							<option value="1">人事</option>
+							<option value="2" selected>インターン生</option>
+							</form:select>
+						</td>
+					</c:if>
 				</tr>
 			</table>
 			
+			<input type="hidden" name="account" value="${summaryEditUserForm.account}">
 			<input type="hidden" name="id" value="${summaryEditUserForm.id}">
 			<input type="hidden" name="password" value="${summaryEditUserForm.password}">
 			<input class="summaryEditUser-button" type="submit" value="編集">

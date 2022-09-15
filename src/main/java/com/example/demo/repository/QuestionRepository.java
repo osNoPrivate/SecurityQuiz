@@ -2,31 +2,42 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.example.demo.entity.Question;
-import com.example.demo.repository.mapper.QuestionMapper;
 
-@Repository
-public class QuestionRepository {
+/**
+ * クエッション情報取得レポジトリ
+ * 
+ * @author sy199
+ *
+ */
+public interface QuestionRepository {
 
-	@Autowired
-	private QuestionMapper questionMapper;
+	/**
+	 * 全クエッション情報取得処理
+	 * 
+	 * @return 全クエッション情報
+	 */
+	List<Question> allQuestion();
 	
-	public List<Question> allQuestion(){
-		return questionMapper.allQuestion();
-	}
+	/**
+	 * クエッション情報取得処理
+	 * 
+	 * @param クエッションid
+	 * @return クエッション情報
+	 */
+	Question selectQuestion(int id);
 	
-	public Question selectQuestion(int id) {
-		return questionMapper.selectQuestion(id);
-	}
+	/**
+	 * 解答登録処理
+	 * 
+	 * @param question クエッションモデル
+	 */
+	void addAnswer(Question nowQuestion);
 	
-	public void addAnswer(Question nowQuestion) {
-		questionMapper.addAnswer(nowQuestion);
-	}
-	
-	public List<Question>countAnswer(){
-		return questionMapper.countAnswer();
-	}
+	/**
+	 * 解答情報集計処理
+	 * 
+	 * @return 全クエッション情報
+	 */
+	List<Question> countAnswer();
 }

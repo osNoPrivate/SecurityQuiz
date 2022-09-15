@@ -9,6 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="${pageContext.request.contextPath}/public/css/style.css" rel="stylesheet" type="text/css">
+ <style type="text/css">
+ .card-header {
+ 	background-color:white;
+ 	padding:0;
+ }
+</style>
 <title>結果画面</title>
 </head>
 <body>
@@ -43,568 +49,75 @@
 			<c:if test="${ score != 100 }"><font color="red">不合格</font></c:if>
 		</div>
 		
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題1</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question1.judge == 1 }">正解</c:if>
-					<c:if test="${ question1.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question1.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question1.firstAnswer}" /></td>
-							<td><c:out value="${question1.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question1.thirdAnswer}" /></td>
-							<td><c:out value="${question1.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question1.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question1.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question1.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question1.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question1.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question1.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question1.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question1.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target1" aria-expand="false" aria-controls="#target1">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target1">
-							<c:out value="${ question1.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
 		
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題2</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question2.judge == 1 }">正解</c:if>
-					<c:if test="${ question2.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question2.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question2.firstAnswer}" /></td>
-							<td><c:out value="${question2.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question2.thirdAnswer}" /></td>
-							<td><c:out value="${question2.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question2.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question2.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question2.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question2.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question2.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question2.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question2.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question2.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target2" aria-expand="false" aria-controls="#target2">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target2">
-							<c:out value="${ question2.explanation }" />
+		<c:forEach var="question" items="${allQuestion}" varStatus="status">
+			<table class="result-area" border="1" >
+				<tr>
+					<th width="10%"><c:out value="問題${question.id}" /></th>
+					<td width="90%" colspan="3">
+						<c:if test="${ question.judge == 1 }">正解</c:if>
+						<c:if test="${ question.judge != 1 }"><font color="red">不正解</font></c:if>
+					</td>
+				</tr>
+				<tr>
+					<th>問題文</th>
+					<td colspan="3">
+						<c:out value="${ question.question }" />
+					</td>
+				</tr>
+				<tr>
+					<th>選択肢</th>
+					<td colspan="3">
+						<table class="answer">
+							<tr>
+								<td><c:out value="${question.firstAnswer}" /></td>
+								<td><c:out value="${question.secondAnswer}" /></td>
+							</tr>
+							<tr>
+								<td><c:out value="${question.thirdAnswer}" /></td>
+								<td><c:out value="${question.fourthAnswer}" /></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>答え</th>
+					<td>
+						<c:if test="${ question.answer == 1 }">&#9312;</c:if>
+						<c:if test="${ question.answer == 2 }">&#9313;</c:if>
+						<c:if test="${ question.answer == 3 }">&#9314;</c:if>
+						<c:if test="${ question.answer == 4 }">&#9315;</c:if>
+					</td>
+					<th width="15%">あなたの解答</th>
+					<td width="35%">
+						<c:if test="${ question.answerResult == 1 }">&#9312;</c:if>
+						<c:if test="${ question.answerResult == 2 }">&#9313;</c:if>
+						<c:if test="${ question.answerResult == 3 }">&#9314;</c:if>
+						<c:if test="${ question.answerResult == 4 }">&#9315;</c:if>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4"	style="padding:0;">
+						<div class="wrapper">
+							<div class="container" style="padding:0;">
+								<div class="accordion" id="accordionExample">
+									<div class="card" style="text-align: center;">
+										<div class="card-header" id="heading${question.id}">
+											<h2 class="mb-0" style="font-size: 1.5em;">
+												<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse${question.id}" aria-expanded="false" aria-controls="collapse${question.id}">↓↓&nbsp;解説&nbsp;↓↓</button>
+											</h2>
+										</div>
+										<div id="collapse${question.id}" class="collapse" aria-labelledby="heading${question.id}" data-parent="#accordionExample">
+											<div class="card-body"><c:out value="${ question.explanation }" /></div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題3</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question3.judge == 1 }">正解</c:if>
-					<c:if test="${ question3.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question3.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question3.firstAnswer}" /></td>
-							<td><c:out value="${question3.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question3.thirdAnswer}" /></td>
-							<td><c:out value="${question3.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question3.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question3.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question3.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question3.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question3.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question3.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question3.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question3.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target3" aria-expand="false" aria-controls="#target3">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target3">
-							<c:out value="${ question3.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題4</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question4.judge == 1 }">正解</c:if>
-					<c:if test="${ question4.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question4.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question4.firstAnswer}" /></td>
-							<td><c:out value="${question4.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question4.thirdAnswer}" /></td>
-							<td><c:out value="${question4.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question4.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question4.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question4.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question4.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question4.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question4.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question4.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question4.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target4" aria-expand="false" aria-controls="#target4">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target4">
-							<c:out value="${ question4.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題5</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question5.judge == 1 }">正解</c:if>
-					<c:if test="${ question5.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question5.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question5.firstAnswer}" /></td>
-							<td><c:out value="${question5.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question5.thirdAnswer}" /></td>
-							<td><c:out value="${question5.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question5.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question5.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question5.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question5.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question5.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question5.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question5.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question5.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target5" aria-expand="false" aria-controls="#target5">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target5">
-							<c:out value="${ question5.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題6</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question6.judge == 1 }">正解</c:if>
-					<c:if test="${ question6.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question6.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question6.firstAnswer}" /></td>
-							<td><c:out value="${question6.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question6.thirdAnswer}" /></td>
-							<td><c:out value="${question6.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question6.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question6.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question6.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question6.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question6.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question6.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question6.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question6.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target6" aria-expand="false" aria-controls="#target6">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target1">
-							<c:out value="${ question6.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題7</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question7.judge == 1 }">正解</c:if>
-					<c:if test="${ question7.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question7.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question7.firstAnswer}" /></td>
-							<td><c:out value="${question7.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question7.thirdAnswer}" /></td>
-							<td><c:out value="${question7.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question7.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question7.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question7.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question7.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question7.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question7.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question7.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question7.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target7" aria-expand="false" aria-controls="#target7">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target7">
-							<c:out value="${ question7.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題8</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question8.judge == 1 }">正解</c:if>
-					<c:if test="${ question8.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question8.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question8.firstAnswer}" /></td>
-							<td><c:out value="${question8.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question8.thirdAnswer}" /></td>
-							<td><c:out value="${question8.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question8.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question8.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question8.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question8.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question8.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question8.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question8.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question8.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target8" aria-expand="false" aria-controls="#target8">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target8">
-							<c:out value="${ question8.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題9</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question9.judge == 1 }">正解</c:if>
-					<c:if test="${ question9.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question9.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question9.firstAnswer}" /></td>
-							<td><c:out value="${question9.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question9.thirdAnswer}" /></td>
-							<td><c:out value="${question9.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question9.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question9.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question9.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question9.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question9.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question9.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question9.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question9.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target9" aria-expand="false" aria-controls="#target9">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target9">
-							<c:out value="${ question9.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<table class="result-area" border="1" >
-			<tr>
-				<th width="10%">問題10</th>
-				<td width="90%" colspan="3">
-					<c:if test="${ question10.judge == 1 }">正解</c:if>
-					<c:if test="${ question10.judge != 1 }"><font color="red">不正解</font></c:if>
-				</td>
-			</tr>
-			<tr>
-				<th>問題文</th>
-				<td colspan="3">
-					<c:out value="${ question10.question }" />
-				</td>
-			</tr>
-			<tr>
-				<th>選択肢</th>
-				<td colspan="3">
-					<table class="answer">
-						<tr>
-							<td><c:out value="${question10.firstAnswer}" /></td>
-							<td><c:out value="${question10.secondAnswer}" /></td>
-						</tr>
-						<tr>
-							<td><c:out value="${question10.thirdAnswer}" /></td>
-							<td><c:out value="${question10.fourthAnswer}" /></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<th>答え</th>
-				<td>
-					<c:if test="${ question10.answer == 1 }">&#9312;</c:if>
-					<c:if test="${ question10.answer == 2 }">&#9313;</c:if>
-					<c:if test="${ question10.answer == 3 }">&#9314;</c:if>
-					<c:if test="${ question10.answer == 4 }">&#9315;</c:if>
-				</td>
-				<th width="15%">あなたの解答</th>
-				<td width="35%">
-					<c:if test="${ question10.answerResult == 1 }">&#9312;</c:if>
-					<c:if test="${ question10.answerResult == 2 }">&#9313;</c:if>
-					<c:if test="${ question10.answerResult == 3 }">&#9314;</c:if>
-					<c:if test="${ question10.answerResult == 4 }">&#9315;</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4"	>
-					<div class="accordion">
-						<div align="center" class="parent" data-toggle="collapse" data-target="#target10" aria-expand="false" aria-controls="#target10">↓&nbsp;解説&nbsp;↓</div>
-						<div class="child collapse" id="target10">
-							<c:out value="${ question10.explanation }" />
-						</div>
-					</div>
-				</td>
-			</tr>
-		</table>
+					</td>
+				</tr>
+			</table>
+		</c:forEach>
 	</div>
 	
 <!-- bootstrap用 -->

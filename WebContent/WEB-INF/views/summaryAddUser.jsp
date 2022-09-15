@@ -61,6 +61,7 @@
 		 			</c:forEach>
 		 		</div>
 		 	</c:if> 
+		 	<font color="red"><c:out value="${errorMessage}" /></font>
 		 	
 			<form:form action="${pageContext.request.contextPath}/summaryAddUser/insert/"
 						modelAttribute="userForm">
@@ -87,8 +88,13 @@
 						<td><form:input type="password" path="checkPassword" placeholder="パスワード確認"/></td>
 					</tr>
 					<tr>
-						<td>summary</td>
-						<td><form:select path="summary" items="${selectName}" itemLabel="name" itemValue="status" ></form:select></td>
+						<td>authority</td>
+						<td><form:select path="summary">
+							<option value="0">選択</option>
+							<option value="1">人事</option>
+							<option value="2">インターン生</option>
+							</form:select>
+						</td>
 					</tr>
 				</table>
 				<input class="summaryAddUser-button" type="submit" value="登録">

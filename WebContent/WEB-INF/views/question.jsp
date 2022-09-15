@@ -31,19 +31,14 @@
 	<div  style="float:right;">
 		<br>
 		<div align="right" class="pagenation">
+			
 			<c:forEach items="${allQuestionData}" var="questionData">
-				<c:if test="${ questionData.answerResult == null }">
 					<form:form action="${pageContext.request.contextPath}/pagenation/" modelAttribute="question">
 						<input type="hidden" name="id" value="${questionData.id}">
-						<input type="submit" class="pagenation" style="color:#CCCCCC; " value="${questionData.id}" >
+						<input type="submit" class="pagenation" 
+							style="${ questionData.answerResult == null ? 'color:#CCCCCC;' : 'color:black;'} " 
+							value="${questionData.id}" >
 					</form:form>
-				</c:if>
-				<c:if test="${ questionData.answerResult != null }">
-					<form:form action="${pageContext.request.contextPath}/pagenation/" modelAttribute="question">
-						<input type="hidden" name="id" value="${questionData.id}">
-						<input type="submit" class="pagenation" style="color:black; " value="${questionData.id}" >
-					</form:form>
-				</c:if>
 			</c:forEach>
 		</div>
 		
@@ -51,7 +46,7 @@
 				<tr>
 					<td align="right" >
 						<form action="${pageContext.request.contextPath}/home/" method="get">
-							<input type="submit" class="stopQuestion-button" value="解答を中断する">
+							<input type="submit" class="stopQuestion-button" value="解答を中断する" onClick="return stopQuestioncheck()">
 						</form>
 					</td>
 				</tr>
@@ -59,21 +54,22 @@
 					<td align="right">
 						<form:form action="${pageContext.request.contextPath}/result/" modelAttribute="question">
 							<input type="hidden" name="id" value="${nowQuestion.id}">
-							<input type="submit" class="endQuestion-button" value="解答終了">
+							<input type="submit" class="endQuestion-button" value="解答終了" onClick="return endQuestioncheck()">
 						</form:form>
 					</td>
 				</tr>
 			</table>
 	</div>
-		<c:if test="${ not empty validationError }">
-			<div class="errorMessages">
-				<c:forEach items="${validationError}" var="validationError">
-					<font color="red"><c:out value="${validationError}" /></font><br>
-				</c:forEach>
-			</div>
-		</c:if>
-		
 		<div align="center" class="question-era">
+			<c:if test="${ not empty validationError }">
+				<div  class="errorMessages">
+					<c:forEach items="${validationError}" var="validationError">
+						<font color="red"><c:out value="${validationError}" /></font><br>
+					</c:forEach>
+				</div>
+			</c:if>
+			<font color="red"><c:out value="${errorMessage}" /></font>
+		
 			<table>
 				<tr>
 					<td>
@@ -114,5 +110,24 @@
 			</form:form>
 		</div>
 	</div>
+	
+	<script>
+	function stopQuestioncheck(){
+		if(window.confirm('解答を中断してもよろしいでしょうか？')){
+			return true;
+				}else{
+			return false;
+				}
+	}
+
+	function endQuestioncheck(){
+		if(window.confirm('解答を終了しますか？')){
+			return true;
+				}else{
+			return false;
+				}
+		}
+	</script>
+
 </body>
 </html>

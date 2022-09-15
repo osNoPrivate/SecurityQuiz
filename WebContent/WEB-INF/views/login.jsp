@@ -21,6 +21,7 @@
 		 			</c:forEach>
 		 		</div>
 		 	</c:if> 
+		 	<font color="red"><c:out value="${errorMessage}" /></font>
 			<form:form action="${pageContext.request.contextPath}/login/check/" modelAttribute="user">
 				<table>
 					<tr>

@@ -2,6 +2,7 @@ package com.example.demo.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -25,6 +26,14 @@ public class UserForm {
 	private Integer summary;
 	private Date createdDate;
 	private Date updatedDate;
+	
+	@AssertTrue
+	public boolean ismatchPassword() {
+	if (password.matches(checkPassword)) {
+		return true;
+	}
+		return false;
+	}
 	
 	
 	public Integer getId() {

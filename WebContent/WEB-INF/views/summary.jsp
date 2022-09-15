@@ -82,7 +82,7 @@
 						<c:if test="${ userData.id != loginUser.id }">
 							<form:form action="${pageContext.request.contextPath}/deleteUser/" modelAttribute="user">
 								<input type="hidden" name="id" value="${userData.id}">
-								<input type="submit" class="summaryDelete-button" value="削除">
+								<input type="submit" class="summaryDelete-button" value="削除" onClick="return deletecheck()">
 							</form:form>
 						</c:if>
 					</td>
@@ -102,6 +102,15 @@
 			</c:forEach>
 		</table>
 	</div>
-
+	
+<script>
+	function deletecheck(){
+		if(window.confirm('削除すると、ユーザー情報は元には戻りませんがよろしいですか？')){
+			return true;
+				}else{
+			return false;
+				}
+		}
+</script>
 </body>
 </html>

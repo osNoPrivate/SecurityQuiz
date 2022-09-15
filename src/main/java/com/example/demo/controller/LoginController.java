@@ -1,11 +1,11 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,9 @@ public class LoginController {
 	@Autowired
 	public HttpSession session;
 	
+	@Autowired
+	private MessageSource messageSource;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Model model) {
 		
@@ -32,18 +35,22 @@ public class LoginController {
 		return "login";
 	}
 	
+		/**
+		 * ログイン機能
+		 * 
+		 * @param model
+		 * @param user login確認用フォーム
+		 * @return home画面への遷移
+		 */
+	
 	@RequestMapping(value = "/login/check/", method = RequestMethod.POST)
 	public String checkUser(Model model,User user) {
 		
 		User checkUser = userService.checkUser(user);
 		
 		if(checkUser == null) {
-			List<String> errorList = new ArrayList<String>();
-			errorList.add("ログインに失敗しました。");
-			User reUser = new User();
-
-			model.addAttribute("validationError", errorList);
-			model.addAttribute("user",reUser);
+			model.addAttribute("errorMessage",messageSource.getMessage("LoginFailed.Message", new String[]{}, Locale.JAPAN));
+			model.addAttribute("user",new User());
 	        return "login";
 		}
 

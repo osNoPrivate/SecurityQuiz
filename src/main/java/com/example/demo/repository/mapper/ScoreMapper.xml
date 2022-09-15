@@ -10,14 +10,28 @@
 		<result column="created_date" property="createdDate" />
 	</resultMap>
 <insert id="insertScore">
-	insert into scores (user_id,score) values
-	(#{userId},#{score})
+	insert 
+	into
+	 scores (
+	  user_id, 
+	  score
+	)values(
+	  #{userId},
+	  #{score}
+	)
 </insert>
 <select id="userScore" resultMap="ScoreMapperResult">
-	select * FROM scores
-	WHERE user_id = #{userId}
+	select
+	 * 
+	FROM
+	 scores
+	WHERE
+	 user_id = #{userId}
 </select>
 <select id="allScore" resultMap="ScoreMapperResult">
-	select * FROM scores
+	select
+	 * 
+	FROM
+	 scores
 </select>
 </mapper>
